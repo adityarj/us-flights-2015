@@ -1,0 +1,14 @@
+<svg width="{{width}}" height="{{height}}">
+	<rect width="{{width}}" height="{{height}}" ng-click="resetSelectState()" fill="#72a3cc"></rect>
+	<rect x="{{width - 75}}" y="15" width="90" height="20" fill="lightgreen"></rect>
+	<text x="{{width - 70}}" y="30" font-size="15" fill="black">{{focusStateName}}</text>
+	<g>
+		<g class="landmass">
+			<circle r="{{node.code == 'AK' || node.code == 'HI' ? 30 :  70}}" cx="{{node.x}}" cy="{{node.y}}" ng-repeat="node in processedData" fill="#aad0ef" ng-click="resetSelectState()"></circle>
+		</g>
+		<g ng-repeat="node in processedData" transform="{{'translate('+node.x+','+node.y+')'}}">
+			<path ng-repeat="pie in node.pie track by $index" d="{{node.arc(pie)}}" fill="{{color(pie.data)}}" opacity="{{node.opacity}}" ng-click="selectState(node)"></path >
+			<text text-anchor="middle" font-size="10" fill="white">{{node.state}}</text>
+		</g>
+	</g>
+</svg>

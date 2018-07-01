@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>Dorling Cartogram</title>
+<head>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.5.0-rc.1/css/foundation.min.css">
+</head>
+<body>
+	<div id="main" ng-app="flightApp" ng-controller="mainController">
+		<div class="grid-container"">
+			<div class="grid-x grid-padding-x">
+				<fieldset class="large-2">
+					<legend>Airlines</legend>
+						<label ng-repeat="airline in filter track by $index" for="airline{{$index}}">
+							<input id="airline{{$index}}" type="checkbox" name="airlines" ng-model="airline.value" ng-change="reprocessData()"/>
+							<span class="label" ng-style="{backgroundColor: airline.color,fontSize: '12px'}">{{airline.name}}</span>
+						</label>
+				</fieldset>
+				<fieldset class="large-10">
+					<pie-dorling data="data" width="width" height="height" filter="filter" access="parameter" depart="isDeparture"></pie-dorling>
+				</fieldset>
+			</div>
+			<div class="grid-container">
+				<div class="grid-x grid-padding-x">
+					<fieldset class="large-2">
+						{{isDeparture ? "Departing" : "Arriving"}}
+						<div class="switch large" >
+							<input class="switch-input" id="departureSwitch" type="checkbox" ng-model="isDeparture">
+							<label class="switch-paddle" for="departureSwitch">
+								<span class="show-for-sr">Departing/Arriving</span>
+							</label>
+						</div>
+					</fieldset>
+					<div ng-repeat="parameters in parameterOptions track by $index" class="large-1">
+						{{parameters.charAt(0).toUpperCase() + parameters.slice(1)}}
+						<div class="switch">
+						  <input class="switch-input" id="modeSwitch{{$index}}" type="radio" ng-value="parameters" ng-model="parameter.value" name="modeGroup">
+						  <label class="switch-paddle" for="modeSwitch{{$index}}">
+						    <span class="show-for-sr">{{parameters}}</span>
+						  </label>
+						</div>
+					</div>
+					<fieldset class="large-4">
+						Right click on a state to see traffic to or from that state. Click anywhere on the background to return to total traffic.
+					</fieldset>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script src="//d3js.org/d3.v3.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.2/angular.min.js"></script>
+<script type="text/javascript" src="airlines.js"></script>
+<script type="text/javascript" src="mainController.js"></script>
+<script type="text/javascript" src="tickService.js"></script>
+<script type="text/javascript" src="pieDorlingController.js"></script>
