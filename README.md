@@ -1,5 +1,5 @@
 # A Visualization of Flight Data in the United States, 2015
-A Dorling Cartogram of Pie Charts over the US flights 2015 dataset aggregated at the state level
+A Dorling Cartogram of Pie Charts over the US flights 2015 dataset aggregated at the state level. Viewable here : https://adityarj.neocities.org/us_flights/
 
 ## Running 
 Simply run a HTTP server at this directory. For example, you could use, ```python -m http.server```, if you are using Python 3
