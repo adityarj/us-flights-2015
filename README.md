@@ -4,6 +4,9 @@ A Dorling Cartogram of Pie Charts over the US flights 2015 dataset aggregated at
 ## Running 
 Simply run a HTTP server at this directory. For example, you could use, ```python -m http.server```, if you are using Python 3
 
+## Creating the Visualization
+The visualization uses Angular and D3. I first aggregated the data by state using a python script, included in the repo. The visualization itself was created using an angular directive with D3 being used to perform all the calculations. The Dorling cartogram code was adapted from Mike Bostock's block, https://bl.ocks.org/mbostock/4055892. Foundation was used for the buttons and checkboxes.
+
 ## Interpreting the Visualization
 The visualization is a Dorling cartogram of pie charts, with the cartogram skewed according to the number of flights per state or originating to or from a particular state.
 The pie charts are split according to airline to see the proportion of flights that an airline has from a particular state. <br>
